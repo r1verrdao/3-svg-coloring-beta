@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: svg-color
+Version: 0.1.0
+Summary: A Streamlit tool to color SVG sketches based on PNG images, structured with Clean Architecture principles.
+Author-email: Your Name <your.email@example.com>
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: Streamlit
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Classifier: Typing :: Typed
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: streamlit>=1.20.0
+Requires-Dist: numpy>=1.20.0
+Requires-Dist: opencv-python-headless>=4.5.0
+Requires-Dist: shapely>=2.0.0
+Requires-Dist: lxml>=4.9.0
+Requires-Dist: Pillow>=9.0.0
+Requires-Dist: python-dotenv>=0.20.0
+
+# pip install -e . to install

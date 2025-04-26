@@ -1,0 +1,58 @@
+# pyproject.toml (Đặt ở thư mục gốc của dự án, ví dụ: svg_color_project/)
+
+[build-system]
+# Yêu cầu các công cụ cần thiết để build package (setuptools là phổ biến)
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# --- Metadata cơ bản ---
+name = "svg-color"                 # Tên package khi publish (dùng kebab-case)
+version = "0.1.0"                       # Phiên bản đầu tiên
+authors = [
+  { name="Your Name", email="your.email@example.com" }, # <<< THAY THÔNG TIN CỦA BẠN
+]
+description = "A Streamlit tool to color SVG sketches based on PNG images, structured with Clean Architecture principles."
+readme = "README.md"                    # File mô tả chi tiết (nên tạo)
+requires-python = ">=3.8"               # Phiên bản Python tối thiểu
+license = { text = "MIT" }              # Hoặc chọn license khác, ví dụ: { file = "LICENSE" } nếu có file riêng
+
+# --- Phân loại (Giúp tìm kiếm trên PyPI nếu publish) ---
+classifiers = [
+    "Development Status :: 3 - Alpha", # Hoặc 4 - Beta, 5 - Production/Stable
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License", # Phải khớp với license ở trên
+    "Operating System :: OS Independent",
+    "Framework :: Streamlit",
+    "Intended Audience :: Developers",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Typing :: Typed", # Nếu bạn có sử dụng type hints
+]
+
+# --- Dependencies (Các thư viện mà code của bạn cần để chạy) ---
+dependencies = [
+    "streamlit >= 1.20.0",              # Cho giao diện người dùng web
+    "numpy >= 1.20.0",                  # Cho xử lý mảng, đặc biệt là ảnh với OpenCV
+    "opencv-python-headless >= 4.5.0",  # Cho đọc, ghi, xử lý ảnh (cv2) - phiên bản không cần GUI
+    # "opencv-python >= 4.5.0",         # <<< Bỏ comment dòng này VÀ comment dòng headless nếu bạn CẦN GUI của OpenCV
+    "shapely >= 2.0.0",                 # Cho tính toán hình học (representative_point)
+    "lxml >= 4.9.0",                    # Cho phân tích và làm sạch SVG hiệu quả, ổn định
+    "Pillow >= 9.0.0",                  # Thư viện xử lý ảnh, thường cần cho Streamlit và thao tác ảnh cơ bản
+    "python-dotenv >= 0.20.0",          # Để đọc biến môi trường từ file .env (nếu bạn dùng)
+]
+
+# --- Optional: Project URLs (Liên kết hữu ích) ---
+# [project.urls]
+# "Homepage" = "https://github.com/yourusername/svg_color_project" # <<< THAY URL CỦA BẠN
+# "Repository" = "https://github.com/yourusername/svg_color_project"
+# "Bug Tracker" = "https://github.com/yourusername/svg_color_project/issues"
+
+# --- Tool Configuration ---
+[tool.setuptools.packages.find] # Cách khác để tự động tìm
+where = ["."] # Chỉ định tìm package trong thư mục src
