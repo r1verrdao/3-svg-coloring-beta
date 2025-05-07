@@ -113,7 +113,7 @@ class SvgProcessor:
         # color = geo_utils.precise_sample_color_at_point(img_data, rep_point)
 
 
-        color = color_utils.get_dominant_color(img_data, coords)
+        color = color_utils.get_dominant_color(img_data, coords, method='kmeans')
         
         logger.debug(f"Found representative color {color} for <{tag}>.")
         return color
@@ -132,16 +132,7 @@ class SvgProcessor:
             A dictionary mapping each successfully processed Element to its
             extracted (R, G, B) color tuple.
         """
-        # Build XPath query to find all relevant elements
-        # elements_xpath = " | ".join([f".//{_SVG_NS}{tag}" for tag in _ELEMENTS_TO_PROCESS])
-        # print(elements_xpath)
-        # svg_ns = "{http://www.w3.org/2000/svg}"
-        # print(f".//{svg_ns}path", f".//{svg_ns}polygon")
-        # elements_to_process = root.findall(f".//{svg_ns}path") + root.findall(f".//{svg_ns}polygon")
-        # print(f"INFO: Tìm thấy {len(elements_to_process)} phần tử <path>/<polygon>.")
 
-
-        
         try:
             elements_to_process = []
             for tag in _ELEMENTS_TO_PROCESS:
@@ -475,9 +466,9 @@ if __name__ == "__main__":
     id = "008015"
     
     # Đọc ảnh PNG
-    img = Image.open(f'/home/ansible/AI-Workspaces/Loc/Artasy/3_SVG-Coloring_beta/data/456789/input/037009.png').convert("RGB")
+    img = Image.open(f'data/005006/005006.png').convert("RGB")
     sample_image_data = np.array(img)
-    with open(f'/home/ansible/AI-Workspaces/Loc/Artasy/3_SVG-Coloring_beta/data/456789/input/037009.svg', 'r', encoding='utf-8') as f:
+    with open(f'data/005006/005006.svg', 'r', encoding='utf-8') as f:
         sample_svg_string = f.read()
 
 
@@ -504,7 +495,7 @@ if __name__ == "__main__":
             logger.exception(f"An unexpected error occurred during processing: {e}")
 
     end_time = time.time()
-    logger.info(f"Processing finished in {end_time - start_time:.2f} seconds.")
+    logger.info(f"Processing finished in {end_time - start_time:.5f} seconds.")
 
     # --- 5. Xử lý Kết quả ---
     if processed_tree:
@@ -525,7 +516,7 @@ if __name__ == "__main__":
         #     logger.error(f"Error converting processed tree to string: {e}")
 
         # Cách 2: Lưu kết quả vào file SVG mới
-        output_filename = "./processed_output_example.svg"
+        output_filename = "./output_005006_no_adaptive.svg"
         try:
             processed_tree.write(output_filename, encoding='utf-8', xml_declaration=True)
             logger.info(f"Successfully saved processed SVG to: {output_filename}")
@@ -539,3 +530,6 @@ if __name__ == "__main__":
         print("Processing failed. Check logs for details.")
 
     logger.info("--- SvgProcessor Example Finished ---")
+
+    # end_time = time.time()
+    # print(f'Elapsed time: {end_time - start_time}')
