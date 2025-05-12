@@ -140,7 +140,7 @@ def get_dominant_color(img, points, method='kmeans', k=9):
         # kmeans.fit(pixels)
 
         # using faiss
-        optimal_k = find_optimal_k(pixels)
+        optimal_k = find_optimal_k_multithreaded(pixels)
         # if pixels.shape[0] < k:
         #     k = pixels.shape[0]
         kmeans = faiss.Kmeans(k=optimal_k, d=pixels.shape[1], min_points_per_centroid=1)
